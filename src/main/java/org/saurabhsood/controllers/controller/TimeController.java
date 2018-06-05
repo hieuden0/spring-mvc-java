@@ -34,8 +34,9 @@ public class TimeController {
     }
 
     @GetMapping("/403")
-    public String error403() {
-        return "/error/403";
+    public ModelAndView error403() {
+        ModelAndView mav = new ModelAndView("error/403");
+        return mav;
     }
 }
 
