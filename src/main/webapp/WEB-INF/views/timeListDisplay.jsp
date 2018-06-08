@@ -8,7 +8,7 @@
 
 <body>
     <h2>All Employees in System</h2>
-
+    <a href="/">Back </a>
     <table border="1">
         <tr>
             <th>UUID</th>
@@ -33,8 +33,9 @@
 
     function saveDateToPostges(){
         var myURL = "http://localhost:8080/addTime";
-        fetch(myURL)
-            .then(response => {
+        fetch(myURL,{
+            credentials: "same-origin"
+        }).then(response => {
                     if (response.status === 200) {
                     return response.json();
                 } else {
@@ -47,5 +48,4 @@
             });
 
     }
-
 </script>

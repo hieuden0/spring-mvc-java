@@ -12,7 +12,7 @@ import java.util.UUID;
 public class TimeVO {
 
     @PrimaryKey
-    @Column(value = "TIME_ID")
+    @Column(value = "time_id")
     private UUID TIME_ID;
 
     @Column(value = "CREATE_AT")

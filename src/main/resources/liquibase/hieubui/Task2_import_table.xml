@@ -4,16 +4,49 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
     <changeSet
-            id="4"
+            id="13"
             author="test">
         <sql >
-            CREATE TABLE time (
+            CREATE TABLE hieubui.time (
             time_id UUID PRIMARY KEY,
             month INTEGER,
             quarter INTEGER,
             year INTEGER,
             create_at DATE,
             modified_at DATE
+            )
+        </sql>
+
+        <sql >
+            CREATE TABLE hieubui.location (
+            location_id UUID  PRIMARY KEY,
+            CITY VARCHAR,
+            COUNTRY VARCHAR,
+            CREATE_AT TIMESTAMP,
+            MODIFIED_AT TIMESTAMP
+            )
+        </sql>
+
+        <sql >
+            CREATE TABLE hieubui.product (
+            product_id UUID  PRIMARY KEY,
+            CLASS VARCHAR,
+            CREATE_AT TIMESTAMP,
+            INVENTORY VARCHAR,
+            ITEM INTEGER,
+            MODIFIED_AT TIMESTAMP
+            )
+        </sql>
+
+        <sql >
+            CREATE TABLE hieubui.sale (
+            sale_id UUID PRIMARY KEY,
+            location_id UUID,
+            product_id UUID,
+            time_id UUID,
+            CREATE_AT TIMESTAMP,
+            DOLLARS VARCHAR,
+            MODIFIED_AT TIMESTAMP
             )
         </sql>
     </changeSet>

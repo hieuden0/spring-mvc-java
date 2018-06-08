@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
     <changeSet
-            id="3"
+            id="12"
             author="test">
         <sql dbms="postgresql" endDelimiter=";">
             CREATE SCHEMA hieubui

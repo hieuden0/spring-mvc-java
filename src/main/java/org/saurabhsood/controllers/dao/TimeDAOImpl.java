@@ -5,6 +5,7 @@ import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
 import org.saurabhsood.controllers.model.TimeVO;
+import org.saurabhsood.controllers.model.UserVO;
 import org.saurabhsood.controllers.uniquity.PostgresDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.cassandra.core.CassandraOperations;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class TimeDAOImpl implements TimeDAO {
@@ -22,7 +24,7 @@ public class TimeDAOImpl implements TimeDAO {
 
     public List<TimeVO> getAllTime()
     {
-        String query = "select * from time2";
+        String query = "select * from time";
 //        //Creating Cluster object
 //        Cluster cluster = Cluster.builder().addContactPoint("localhost").withPort(9042).build();
 //        //Creating Session object
@@ -41,6 +43,15 @@ public class TimeDAOImpl implements TimeDAO {
         }
 
         return listTime;
+    }
+
+    public TimeVO getTimeByID(UUID id)
+    {
+        String query = "Select * "//
+                + " from time where time_id = " + id + " ALLOW FILTERING";
+
+        TimeVO result = cassandraOperations.selectOne(query, TimeVO.class );
+        return result;
     }
 
     @Override

@@ -29,12 +29,11 @@ public class PostgresDatabase {
         return conn;
     }
 
-    public void createItem( TimeVO timeVO) {
+    public String createItem( TimeVO timeVO) {
         try {
-
             Connection conn = connect();
             PreparedStatement st = conn.prepareStatement(
-                    "INSERT INTO time (TIME_ID,CREATE_AT, MONTH, QUARTER, YEAR) VALUES (?, ?, ?, ?, ?)"
+                    "INSERT INTO hieubui.time (TIME_ID,CREATE_AT, MONTH, QUARTER, YEAR) VALUES (?, ?, ?, ?, ?)"
             );
             PGobject time_id = new PGobject();
             time_id.setType("uuid");
@@ -46,8 +45,10 @@ public class PostgresDatabase {
             st.setInt(5, timeVO.getYEAR());
             st.executeUpdate();
             st.close();
+            return "1";
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return "";
         }
     }
 
