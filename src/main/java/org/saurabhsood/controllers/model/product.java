@@ -4,13 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 import java.util.UUID;
 
-@Table(name = "product")
+@Table(name = "product",schema = "hieubui")
 @Entity
-public class ProductVO extends AuditModel {
-
+public class product extends AuditModel{
     @Id
     @Column(name = "product_id")
     private UUID product_id;
@@ -56,4 +54,5 @@ public class ProductVO extends AuditModel {
     public void setITEM(int ITEM) {
         this.ITEM = ITEM;
     }
+
 }

@@ -23,15 +23,15 @@
     </tr>
     <c:forEach items="${saleList}" var="sale">
         <tr>
-            <td>${sale.sale_id}</td>
+            <td><a href="/getSaleByID/${sale.sale_id}">${sale.sale_id}</a></td>
             <td>${sale.DOLLARS}</td>
-            <td>${sale.timeVO.YEAR}</td>
-            <td>${sale.timeVO.QUARTER}</td>
-            <td>${sale.timeVO.MONTH}</td>
-            <td>${sale.productVO.CLASS}</td>
-            <td>${sale.productVO.INVENTORY}</td>
-            <td>${sale.locationVO.CITY}</td>
-            <td>${sale.locationVO.COUNTRY}</td>
+            <td>${sale.time.YEAR}</td>
+            <td>${sale.time.QUARTER}</td>
+            <td>${sale.time.MONTH}</td>
+            <td>${sale.product.CLASS}</td>
+            <td>${sale.product.INVENTORY}</td>
+            <td>${sale.location.CITY}</td>
+            <td>${sale.location.COUNTRY}</td>
         </tr>
     </c:forEach>
 </table>
@@ -43,12 +43,10 @@
 <script>
 
     function saveDateToPostges(){
-        var myURL = "http://localhost:8080/add Time";
-        var data = {username: 'example'};
+        var myURL = "http://localhost:8080/addSale";
         fetch(myURL,{
             credentials: "same-origin",
-            method: 'POST',
-            body: JSON.stringify(data),
+            method: 'GET',
         }).then(response => {
             if (response.status === 200) {
             return response.json();

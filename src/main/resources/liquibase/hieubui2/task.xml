@@ -4,10 +4,10 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
     <changeSet
-            id="16"
+            id="1000"
             author="test">
         <sql >
-            CREATE TABLE hieubui.time (
+            CREATE TABLE time (
             time_id UUID PRIMARY KEY,
             month INTEGER,
             quarter INTEGER,
@@ -18,7 +18,7 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
         </sql>
 
         <sql >
-            CREATE TABLE hieubui.location (
+            CREATE TABLE location (
             location_id UUID  PRIMARY KEY,
             CITY VARCHAR,
             COUNTRY VARCHAR,
@@ -28,7 +28,7 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
         </sql>
 
         <sql >
-            CREATE TABLE hieubui.product (
+            CREATE TABLE product (
             product_id UUID  PRIMARY KEY,
             CLASS VARCHAR,
             CREATE_AT TIMESTAMP,
@@ -39,7 +39,7 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
         </sql>
 
         <sql >
-            CREATE TABLE hieubui.sale (
+            CREATE TABLE sale (
             sale_id UUID PRIMARY KEY,
             location_id UUID,
             product_id UUID,

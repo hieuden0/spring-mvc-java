@@ -4,12 +4,14 @@
 <html>
 <head>
     <title>Spring MVC Hello World</title>
+    <link href="webjars/bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/css/style.css" rel="stylesheet">
 </head>
 
 <body>
     <h2>All Employees in System</h2>
     <a href="/">Back </a>
-    <table border="1">
+    <table class="table table-bordered" border="1">
         <tr>
             <th>UUID</th>
             <th>Month</th>
@@ -18,7 +20,7 @@
         </tr>
         <c:forEach items="${timeList}" var="time">
             <tr>
-                <td>${time.TIME_ID}</td>
+                <td><a href="/getTimeByID/${time.time_id}">${time.time_id}</a> </td>
                 <td>${time.MONTH}</td>
                 <td>${time.YEAR}</td>
                 <td>${time.QUARTER}</td>
@@ -49,3 +51,6 @@
 
     }
 </script>
+
+<script src="webjars/jquery/1.9.1/jquery.js"></script>
+<script src="webjars/bootstrap/4.0.0-alpha/js/bootstrapmvc:.js"></script>

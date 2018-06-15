@@ -6,9 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.UUID;
 
-@Table(name = "location")
+@Table(name = "location",schema = "hieubui")
 @Entity
-public class LocationVO extends AuditModel {
+public class location extends AuditModel{
     @Id
     @Column(name = "location_id")
     private UUID location_id;

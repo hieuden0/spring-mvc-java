@@ -1,16 +1,14 @@
 package org.saurabhsood.controllers.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
 @Table(name = "sale",schema = "hieubui")
-public class SaleVO extends AuditModel {
+public class sale extends AuditModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "sale_id")
     private UUID sale_id;
 
     @Column(name = "DOLLARS", columnDefinition = "DOLLARS")
@@ -27,15 +25,15 @@ public class SaleVO extends AuditModel {
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "time_id",referencedColumnName="time_id", insertable=false, updatable=false)
-    private TimeVO time;
+    private time time;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", insertable=false, updatable=false)
-    private ProductVO product;
+    private product product;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", insertable=false, updatable=false)
-    private LocationVO location;
+    private location location;
 
 
     public UUID getSale_id() {
@@ -79,27 +77,27 @@ public class SaleVO extends AuditModel {
     }
 
 
-    public TimeVO getTime() {
+    public time getTime() {
         return time;
     }
 
-    public void setTime(TimeVO time) {
+    public void setTime(time time) {
         this.time = time;
     }
 
-    public ProductVO getProduct() {
+    public org.saurabhsood.controllers.model.product getProduct() {
         return product;
     }
 
-    public void setProduct(ProductVO product) {
+    public void setProduct(org.saurabhsood.controllers.model.product product) {
         this.product = product;
     }
 
-    public LocationVO getLocation() {
+    public org.saurabhsood.controllers.model.location getLocation() {
         return location;
     }
 
-    public void setLocation(LocationVO location) {
+    public void setLocation(org.saurabhsood.controllers.model.location location) {
         this.location = location;
     }
 }

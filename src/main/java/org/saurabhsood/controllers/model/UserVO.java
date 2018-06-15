@@ -2,6 +2,7 @@ package org.saurabhsood.controllers.model;
 
 import org.springframework.data.cassandra.core.mapping.Column;
 
+import javax.persistence.Entity;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

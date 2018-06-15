@@ -12,6 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.UUID;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 public class SaleController {
@@ -35,5 +38,22 @@ public class SaleController {
     {
         log.info("saleListDisplay message");
         return name;
+    }
+
+    @GetMapping(value = "/addSale")
+    public String addSale(){
+        log.debug("insertSale function - add to postgres");
+        return manager.insertSale();
+    }
+
+    @RequestMapping(value = "/getSaleByID/{id}", method = GET)
+    @ResponseBody
+    public ModelAndView getTimeByID(Model model,  @PathVariable UUID id)
+    {
+        log.info("getSaleByID");
+        ModelAndView mav = new ModelAndView("saleListDisplay");
+        model.addAttribute("saleList", manager.findSaleByFirstnameQueryDSL(id));
+        mav.addObject(model);
+        return mav;
     }
 }
