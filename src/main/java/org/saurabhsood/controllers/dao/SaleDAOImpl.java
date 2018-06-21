@@ -70,7 +70,6 @@ public class SaleDAOImpl implements SaleDAO{
         EntityManagerFactory emf =
                 Persistence.createEntityManagerFactory("persistencePostgre");
         EntityManager em = emf.createEntityManager();
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
 
         final JPAQuery<sale> query = new JPAQuery<>(em);
         final Qsale saleVO = new Qsale("sale");

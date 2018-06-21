@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.saurabhsood.controllers.exception.CustomException;
 import org.saurabhsood.controllers.service.SaleManager;
 import org.saurabhsood.controllers.service.TimeMagager;
+import org.saurabhsood.controllers.uniquity.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.util.ClassUtils;
@@ -17,7 +18,7 @@ import java.util.UUID;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
-public class SaleController {
+public class SaleController  extends GlobalControllerExceptionHandler{
     static Logger log = Logger.getLogger(SaleController.class);
 
     @Autowired
@@ -26,7 +27,7 @@ public class SaleController {
     @GetMapping(value = "/getAllSale")
     public ModelAndView getAllSale(Model model)
     {
-        log.info("saleListDisplay message");
+        LogUtil.info(this.getClass(),"saleListDisplay message");
         ModelAndView mav = new ModelAndView("saleListDisplay");
         model.addAttribute("saleList", manager.getAllSale());
         mav.addObject(model);
@@ -36,13 +37,13 @@ public class SaleController {
     @RequestMapping(value = "/postAllSale", method = RequestMethod.GET, produces = "application/json")
     public String  postAllSale(@RequestParam("name") String name)
     {
-        log.info("saleListDisplay message");
+        LogUtil.info(this.getClass(),"saleListDisplay message");
         return name;
     }
 
     @GetMapping(value = "/addSale")
     public String addSale(){
-        log.debug("insertSale function - add to postgres");
+        LogUtil.info(this.getClass(),"insertSale function - add to postgres");
         return manager.insertSale();
     }
 
@@ -50,7 +51,7 @@ public class SaleController {
     @ResponseBody
     public ModelAndView getTimeByID(Model model,  @PathVariable UUID id)
     {
-        log.info("getSaleByID");
+        LogUtil.info(this.getClass(),"getSaleByID");
         ModelAndView mav = new ModelAndView("saleListDisplay");
         model.addAttribute("saleList", manager.findSaleByFirstnameQueryDSL(id));
         mav.addObject(model);

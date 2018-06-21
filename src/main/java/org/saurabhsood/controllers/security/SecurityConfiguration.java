@@ -34,10 +34,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers( "/login").permitAll();
+
         http.authorizeRequests()
                 .antMatchers("/*").access("hasAnyRole( 'ADMIN')")
                 .and().formLogin()
-                .failureUrl("/403");
+                .loginPage("/login");
+
+        http.csrf().disable();
 
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
     }

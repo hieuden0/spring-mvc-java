@@ -2,18 +2,18 @@ package org.saurabhsood.controllers.controller;
 
 import javassist.tools.web.BadHttpRequest;
 import org.saurabhsood.controllers.config.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
+import org.saurabhsood.controllers.exception.ExceptionResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ExceptionMapper;
 import java.io.IOException;
-import java.nio.file.NoSuchFileException;
 
 @ControllerAdvice
-public class GlobalControllerExceptionHandler  {
+public class GlobalControllerExceptionHandler  implements ExceptionMapper<ResourceNotFoundException> {
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public ModelAndView noHandlerFoundException(HttpServletRequest request, Exception e)   {
@@ -51,5 +51,15 @@ public class GlobalControllerExceptionHandler  {
         ModelAndView mav = new ModelAndView("error/error");
         mav.addObject("exception", e);
         return mav;
+    }
+
+    @Override
+    public Response toResponse(ResourceNotFoundException exception) {
+        ExceptionResponse response = new ExceptionResponse();
+        response.setErrorCode("resource not found");
+        response.setErrorMessage(exception.getMessage());
+
+        return Response.status(404).entity(response)
+                .type("application/json").build();
     }
 }
